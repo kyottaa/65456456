@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #121212; /* Темный фон страницы */
+    color: rgb(0, 0, 0); /* Белый цвет текста */
+}
+
+.background {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+}
+
+.background img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    min-width: 50%;
+    min-height: 50%;
+    filter: blur(15px);
+    -webkit-filter: blur(50px);
+    transform: scale(1.1);
+}
+
+.container {
+    background-color: #ffffff; /* Цвет фона плеера */
+    height: 520px;
+    width: 420px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+    margin-bottom: 20px;
+    z-index: 1;
+}
+
+.container:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+}
+
+.player-img {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    top: -50px;
+    left: 50px;
+}
+
+.player-img img {
+    object-fit: cover;
+    border-radius: 20px;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.5);
+}
+
+.player-img:hover img {
+    box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.8);
+}
+
+.player-img img.active {
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s;
+    opacity: 1;
+}
+
+h2 {
+    font-size: 25px;
+    text-align: center;
+    font-weight: 500;
+    margin: 10px 0 0;
+}
+
+h3 {
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+    margin: 10px 0 0;
+}
+
+.player-progress {
+    background-color: #dfdfdf;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 40px 20px 35px;
+    height: 6px;
+    width: 90%;
+}
+
+.progress {
+    background-color: #525252; /* Цвет прогресса */
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.music-duration {
+    position: relative;
+    top: -25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-controls {
+    position: relative;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    display: flex;
+    justify-content: space-between; 
+}
+
+.fa-solid {
+    font-size: 30px;
+    color: #525252;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.fa-solid:hover {
+    filter: brightness(40%);
+}
+
+.play-button {
+    font-size: 44px;
+    position: relative;
+    top: -5px; 
+}
+
+.container.player-hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.container.player-visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.song-list-container {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.song-list-container h1 {
+    color: white; /* Белый цвет текста заголовка */
+    margin-bottom: 20px; /* Отступ для заголовка */
+    font-size: 32px; /* Размер шрифта заголовка */
+}
+
+/* Стили для списка песен */
+.song-list-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.song-list-container li {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Устанавливаем выравнивание по левому краю */
+    background-color: #282828; /* Фоновый цвет карточки */
+    border-radius: 15px; /* Закругленные углы */
+    padding: 10px; /* Уменьшен отступ внутри карточки */
+    transition: transform 0.3s, box-shadow 0.3s; /* Плавные переходы */
+    width: 80%; /* Уменьшена ширина карточки */
+    max-width: 400px; /* Максимальная ширина карточки */
+    margin-left: auto; /* Центрируем карточку */
+    margin-right: auto; /* Центрируем карточку */
+}
+
+.song-list-container img {
+    width: 50px; /* Уменьшенный размер изображения */
+    height: 50px; /* Уменьшенный размер изображения */
+    border-radius: 10px; /* Закругленные углы изображения */
+    margin-right: 15px; /* Отступ справа */
+}
+
+.song-list-container a {
+    font-size: 18px; /* Уменьшен размер шрифта */
+    text-decoration: none;
+    color: #fff; /* Белый цвет текста ссылки */
+    transition: color 0.3s; /* Плавный переход цвета */
+}
+
+.song-list-container a:hover {
+    color: #b1b1b1; /* Цвет текста при наведении */
+}
+
+/* Добавляем стили для имен исполнителей */
+.artist-name {
+    display: block; /* Показывает имя исполнителя на новой строке */
+    font-size: 0.9em; /* Размер шрифта можно изменить */
+    color: #ccc; /* Цвет текста для исполнителя */
+    margin-top: 5px; /* Отступ сверху для лучшего визуального восприятия */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .container {
+        height: 420px;
+        width: 300px;
+    }
+
+    .player-img {
+        width: 250px;
+        height: 250px;
+        top: -40px;
+        left: 25px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    .player-progress {
+        margin: 30px 15px 25px;
+    }
+
+    .fa-solid {
+        font-size: 25px;
+    }
+
+    .play-button {
+        font-size: 32px;
+        top: -3px; 
+    }
+
+    .player-controls {
+        position: relative;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: #e4e4e4;
+    cursor: pointer;
+    z-index: 10; /* Обеспечивает возможность клика по кнопке */
+}
+
+@media (max-width: 600px) {
+    .close-button {
+        top: -60px; /* Положение для мобильных устройств */
+        right: -30px; /* Положение для мобильных устройств */
+        font-size: 25px; /* Измените размер шрифта, если необходимо */
+    }
+}
+
+.volume-container {
+    position: relative; /* Чтобы позиционировать ползунок */
+    margin-left: 250px; /* Сдвиг контейнера громкости вправо */
+}
+
